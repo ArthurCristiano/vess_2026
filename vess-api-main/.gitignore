@@ -1,0 +1,11 @@
+/target
+/data
+
+### Config Igonore ###
+.env
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr

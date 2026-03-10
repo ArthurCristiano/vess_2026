@@ -1,0 +1,25 @@
+########################### NETWORK
+networks:
+  web:
+    external: true
+  internal:
+    external: false
+
+########################### SERVICES
+services:
+  vess:
+    image: vess
+    container_name: vess
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vess.rule=Host(`vess.app.pb.utfpr.edu.br`)"
+      - "traefik.http.routers.vess.entrypoints=websecure"
+      - "traefik.http.routers.vess.tls.certresolver=letsencrypt"
+    ports:
+      - 8651:80
+    networks:
+      - web
